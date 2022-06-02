@@ -10,9 +10,23 @@
                 <a href="/dashboard/posts" class="btn btn-success"><span data-feather="arrow-left">
                     </span>Back to all post</a>
                 <a href="" class="btn btn-warning"><span data-feather="arrow-left"></span>Edit</a>
-                <a href="" class="btn btn-danger"><span data-feather="arrow-left"></span>Delete</a>
-                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" 
-                alt="{{ $post->category->name }}" class="img-fluid"/>
+                <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger " onclick="return confirm('Are you sure?')"><span 
+                    data-feather="x-circle"></span>Delete</button>
+                  </form>
+
+                  @if ($post->image)
+                    <img src={{ asset('storage/' . $post->image) }} alt="{{ 
+                    $post->category->name }}" class="img-fluid"/>
+                  @else
+                    <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ 
+                    $post->category->name }}" class="img-fluid"/>
+                  @endif
+
+                  <h5>{{ $post->harga}}</h5>
+
 
                 <article class="my-3">
                 {!! $post->body !!}

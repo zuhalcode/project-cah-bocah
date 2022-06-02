@@ -7,9 +7,9 @@
         <h2>
             <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
         </h2>
-        <h5>{{ $post["name"] }}</h5>
+        <h5>{{ $post->name }}</h5>
         <p>{{ $post->excerpt }}</p>
-        <img src={{ $post["image"] }} alt={{ $post["name"] }}>
+        <img src={{ $post->image }} alt={{ $post->name }}>
     </article>
     @endforeach
 @endsection
