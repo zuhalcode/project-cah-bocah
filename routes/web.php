@@ -73,14 +73,22 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard',function(){
-    return view('dashboard.index');
-})->middleware('auth');
+    if(auth()->user()->username !='admin'){
+        abort(404);
+    }
+    return view('dashboard.index',[
+        "active"=>'dasboard1'
+    ]);
+});
 
 Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
-Route::get('/dashboard/category/checkSlug',[DashboardCategoryController::class,'checkSlug']);
-Route::resource('/dashboard/category', DashboardCategoryController::class);
+// Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
+// Route::resource('/dashboard/categories', DashboardCategoryController::class);
+
+Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
+Route::resource('/dashboard/categories', DashboardCategoryController::class);
 
 // Route::get('/categories', [CategoryController::class,'index']);
 // Route::get('categories/{post:slug}',[CategoryController::class,'show']);

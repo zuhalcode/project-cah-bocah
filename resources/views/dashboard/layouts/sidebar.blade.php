@@ -16,9 +16,9 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/category*') ? 'active':''}}" aria-current="page" href="/dashboard/category">
+          <a class="nav-link {{ Request::is('dashboard/category*') ? 'active':''}}" aria-current="page" href="/dashboard/categories">
             <span data-feather="home"></span>
-            Category
+            Categories
           </a>
         </li>
 

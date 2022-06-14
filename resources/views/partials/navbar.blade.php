@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
     <title>Cah Bocah Official</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo.css">
@@ -21,22 +19,14 @@
 -->
 </head>
 
-<body>
-    <!-- Start Top Nav -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+ <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
-                <div>
-                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-                </div>
             </div>
         </div>
     </nav>
-    <!-- Close Top Nav -->
+ 
 
-
-    <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
@@ -67,8 +57,9 @@
                               Welcome back, {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li>
-                              <li><hr class="dropdown-divider"></li>
+                              @if(auth()->user()->username == 'admin')
+                              <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li><li><hr class="dropdown-divider"></li>
+                              @endif
                               <li>
                                 <form action="/logout" method="post">
                                     @csrf
@@ -88,5 +79,3 @@
 
     
 
-    
-    <!-- Close Header -->

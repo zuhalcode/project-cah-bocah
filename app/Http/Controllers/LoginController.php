@@ -23,8 +23,14 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            if($credentials['email']=='admin@admin.com'){
+                $request->session()->regenerate();
+                return redirect()->intended('/dashboard');
+            }
+           else{
+               $request->session()->regenerate();
+               return redirect()->intended('/');
+           }
         }
 
         return back()->with('loginError', 'Login failed!');
