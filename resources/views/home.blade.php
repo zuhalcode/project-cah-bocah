@@ -17,10 +17,8 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>ZuhalGantengSekali</b>Official</h1>
+                                <h1 class="h1 text-success"><b>CahBocah</b>Official</h1>
                                 <h3 class="h2">Welcome To Cah Bocah Official</h3>
-                                <h3 class="h2">Perubahan github</h3>
-                                <h3 class="h2">Perubahan github master brach</h3>
                             </div>
                         </div>
                     </div>
@@ -73,6 +71,8 @@
     </div>
     <!-- End Banner Hero -->
 
+    <div style="height: 1px" class="w-100 bg-success"></div>
+
 
     {{-- <!-- Start Categories of The Month -->
     <section class="container py-5">
@@ -104,7 +104,6 @@
         </div>
     </section>
     <!-- End Categories of The Month --> --}}
-
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
