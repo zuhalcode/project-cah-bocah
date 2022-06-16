@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+class Post 
+{
+    private static $Product_posts = [
+        [
+            "title" => "Dress",
+            "slug" => "dress",
+            "body"  => "Dress by CahBocah
+            bahan kaos katun combed 30s
+            Adem nyaman dipakai "
+            ],
+            [
+            "title" => "T-shirt",
+            "slug" => "t-shirt",
+            "body"  => "T-shirt by CahBocah
+            bahan kaos katun combed 30s
+            Adem nyaman dipakai" 
+          ]
+    ];
+    public static function all() {
+        return collect(self::$Product_posts);
+    }
+    public static function find($slug)
+    {
+        $posts = static::all();
+
+      return $posts->firstWhere('slug', $slug);
+   }
+}
