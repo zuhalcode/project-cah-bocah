@@ -2,6 +2,7 @@
 
 @section('container')
     <!-- Start Banner Hero -->
+    <section class=" slider_section position-relative">
     <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
@@ -103,7 +104,7 @@
     </section>
     <!-- End Categories of The Month --> --}}
 
-    <section class="container py-5">
+<section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
                 <h1 class="h1 text-success"><b>About</b>Us</h1>
@@ -117,6 +118,7 @@
     </section>
 
 
+  
    
 {{-- 
     <!-- Start Footer -->
