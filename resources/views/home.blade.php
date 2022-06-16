@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Zuhal Ganteng</b>Official</h1>
+                                <h1 class="h1 text-success"><b>CahBocah</b>Official</h1>
                                 <h3 class="h2">Welcome To Cah Bocah Official</h3>
                             </div>
                         </div>
