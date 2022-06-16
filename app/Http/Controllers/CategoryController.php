@@ -17,6 +17,7 @@ class CategoryController extends Controller
         }
 
         return view('categories',[
+            "title" => "category",
             "name" => "category",
             "active" => 'category',
             "categories" => $categories->get()

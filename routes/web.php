@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\OrderController;
 
 ;
 
@@ -83,6 +84,8 @@ Route::get('/dashboard',function(){
 
 Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+Route::resource('/dashboard/orders',OrderController::class)->middleware('auth');
+
 
 // Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
 // Route::resource('/dashboard/categories', DashboardCategoryController::class);
@@ -90,7 +93,8 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
 Route::resource('/dashboard/categories', DashboardCategoryController::class);
 
-// Route::get('/categories', [CategoryController::class,'index']);
-// Route::get('categories/{post:slug}',[CategoryController::class,'show']);
+Route::get('/categories', [CategoryController::class,'index']);
+Route::get('categories/{post:slug}',[CategoryController::class,'show']);
 // Route::get('/about', [AboutCotroller::class,'index']);
+
 

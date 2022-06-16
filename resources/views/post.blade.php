@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <article>
+                        <article class="">
                             <h2>{{ $post["title"] }}</h2>
                             <h5>{{ $post["name"] }}</h5>
                             <p>Kategori: <a href="/categories/{{ $post->category->slug }}">
@@ -20,52 +20,44 @@
                                 <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{
                                 $post->category->name }}" class="img-fluid"/>
                             @endif
+                        </article>
 
-                    <div class="card">
-                        <div class="card-body mb-3">
-                            <article class="my-3">
-                                {!! $post->body !!}
+                        <div class="card">
+                            <div class="card-body mb-3">
+                                <article class="my-3">
+                                    {!! $post->body !!}
+                                    </article>
                                 </article>
-                            </article>
-                            <a href="/posts">Back to Posts</a>
+                                <a href="/posts">Back to Posts</a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
 
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row pb-3">
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
+                <div class="col-auto">
+                    <ul class="list-inline pb-3">
+                        <li class="list-inline-item text-right">
+                            Quantity
+                            <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                        </li>
+                        <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                        <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
+                        <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="row pb-3">
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
+                </div>
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                </div>
+            </div>
+            
         </div>
     </section>
-    <!-- Close Content -->
-
-   
-    <!-- End Article -->
-
 
 <!-- Start Footer -->
 <footer class="bg-dark" id="tempaltemo_footer">
@@ -126,19 +118,4 @@
             </div>
         </div>
     </div>
-
-<!-- End Footer -->
-
-<!-- Start Script -->
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/templatemo.js"></script>
-<script src="js/custom.js"></script>
-<!-- End Script -->
-   
-
-</body>
-
-</html>
 @endsection

@@ -22,6 +22,14 @@
           </a>
         </li>
 
+        
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/order*') ? 'active':''}}" aria-current="page" href="/dashboard/order">
+            <span data-feather="home"></span>
+            Order
+          </a>
+        </li>
+
 
       </ul>
     </div>

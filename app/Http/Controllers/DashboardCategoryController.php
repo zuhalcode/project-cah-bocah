@@ -44,6 +44,10 @@ class DashboardCategoryController extends Controller
             'slug' => 'required|unique:categories'
         ]);
 
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('images');
+        }
+
         Category::create($validatedData);
 
         return redirect('/dashboard/categories')->with('success', 'New Category has been added!');

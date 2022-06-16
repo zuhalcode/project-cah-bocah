@@ -1,5 +1,5 @@
 
-    <title>Cah Bocah Official</title>
+    {{-- <title>Cah Bocah Official</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,7 +17,7 @@
 <!--
     
 -->
-</head>
+</head> --}}
 
  <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">

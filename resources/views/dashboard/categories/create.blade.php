@@ -1,120 +1,63 @@
-<?php
+@extends('dashboard.layouts.main')
+@section('container')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Create New Category </h1> 
+</div>
+<div class="col-lg-8">
+    <form method="post" action="/dashboard/categories" class="mb-5" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" 
+          name="name" required autofocus value="{{ old('name') }}">
+          {{-- name="name" value="{{ old('name') }}"> --}}
+          @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+          @enderror
+        </div>
+        <div class="mb-3">
+            <label for="slug" class="form-label">Slug</label>
+            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" 
+            name="slug" required value="{{ old('slug') }}">
+            @error('slug')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+          @enderror
+        </div>
 
-namespace App\Http\Controllers;
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input class="form-control @error('image') is invalid @enderror" type="file" id="image" 
+            name="image" onchange="previewImage">
+            @error('image')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+          @enderror
+          </div>
+ 
+        <button type="submit" class="btn btn-dark">Create Category</button>
+    </form>
+</div>
 
-use App\Models\Category;
-use Illuminate\Http\Request;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
+<script>
+    const name = document.querySelector('#name');
+    const slug = document.querySelector('#slug');
 
-class DashboardCategoryController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('dashboard.categories.index', [
-            'categories' => Category::all()
-        ]);
-    }
+    name.addEventListener('change', function(){
+        fetch('/dashboard/categories/checkSlug?name=' + name.value)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
+    });
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('dashboard.categories.create');
-    }
+    document.addEventListener('trix-file-accept', function(e){
+        e.preventDefault();
+    });
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|unique:categories'
-        ]);
+</script>
 
-        Category::create($validatedData);
-
-        return redirect('/dashboard/categories')->with('success', 'New Category has been added!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        return view('dashboard.categories.show', [
-            'category' => $category
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        return view('dashboard.categories.edit',[
-            'category' => $category
-
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        $rules = [
-            'name' => 'required|max:255',
-            
-        ];
-        if($request->slug != $category->slug){
-            $rules['slug'] = 'required|unique:categories';
-        }
-
-        $validatedData = $request->validate($rules);
-
-        Category::where('id', $category->id)->update($validatedData);
-
-        return redirect('/dashboard/categories')->with('success', 'Category has been updated!');
-    
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        Category::destroy($category->id);
-        return redirect('/dashboard/categories')->with('success', 'New Category has been deleted!');
-    }
-
-    public function checkSlug(Request $request){
-        $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
-        return response()->json(['slug' => $slug]);
-    }
-}
+@endsection
