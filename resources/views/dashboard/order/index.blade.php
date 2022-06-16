@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($categories as $category)
+        {{-- @foreach ($categories as $category) --}}
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $category->name }}</td>
@@ -35,7 +35,7 @@
             </form>
         </td>
         </tr>
-        @endforeach
+        {{-- @endforeach --}}
       </tbody>
     </table>
 </div>
