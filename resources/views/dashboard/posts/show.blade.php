@@ -3,7 +3,7 @@
 @section('container')
 <div class="container">
     <div class="row ">
-        <div class="col-lg-8">
+        <div class="col-lg-8 mb-3">
             <article>
                 <h2>{{ $post->title }}</h2>
                 <h5>{{ $post->name }}</h5>
@@ -19,7 +19,7 @@
 
                   @if ($post->image)
                     <img src={{ asset('storage/' . $post->image) }} alt="{{ 
-                    $post->category->name }}" class="img-fluid"/>
+                    $post->category->name }}" class="img-fluid mt-3"/>
                   @else
                     <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ 
                     $post->category->name }}" class="img-fluid"/>

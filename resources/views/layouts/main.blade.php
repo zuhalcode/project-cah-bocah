@@ -13,12 +13,11 @@
    
     {{-- My Styles --}}
     <link rel="styleshoot" href="/css/style.css">
-
-
     <title>Cah Bocah Official | {{ $title }} </title>
   </head>
+
   <body>
-    @include('partials.navbar')
+  @include('partials.navbar')
 
   <div class="container mt-4">
     @yield('container')

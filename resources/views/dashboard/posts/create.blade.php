@@ -5,7 +5,7 @@
     <h1 class="h2">Create New Product </h1> 
 </div>
 
-<div class="col -lg-8">
+<div class="col-lg-8">
     <form method="post" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
       @csrf
         <label for="title" class="form-label">Title</label>
@@ -26,29 +26,29 @@
     </div>
 
     <div class="mb-3">
-      <label for="category"
-        class="form-label">Category</label>
+      <label for="category" class="form-label">Category</label>
         <select class="form-select" name="category_id">
             @foreach ($categories as $category)
               @if(old('category_id')== $category->id)
-              <option value="{{ $category->id }}"selected>{{ $category->name }}</option>
+              <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
               @else
               <option value="{{ $category->id }}">{{ $category->name }}</option>
               @endif
-      @endforeach
-      </select>
+            @endforeach
+        </select>
+    </div>
+      
+    <div class="mb-3">
+      <label for="image" class="form-label">Upload Image</label>
+      <img class="img-preview img-fluid mb-3 col-sm-4">
+      <input class="form-control @error('image') is invalid @enderror" type="file" id="image" 
+      name="image" onchange="previewImage()">
+      @error('image')
+      <div class="invalid-feedback">
+        {{ $message }}
       </div>
-      <div class="mb-3">
-        <label for="image" class="form-label">Upload Image</label>
-        <img class="img-preview img-fluid mb-3 col-sm-5">
-        <input class="form-control @error('image') is invalid @enderror" type="file" id="image" 
-        name="image" onchange="previewImage">
-        @error('image')
-        <div class="invalid-feedback">
-          {{ $message }}
-        </div>
       @enderror
-      </div>
+    </div>
 
       <div class="mb-3">
         <label for="harga" class="form-label">Harga</label>
@@ -75,15 +75,15 @@
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
   
-   title.addEventListener('change', function(){
+   title.addEventListener('change', function() {
      fetch('/dashboard/posts/checkSlug?title=' + title.value)
       .then(response => response.json())
       .then(data => slug.value = data.slug)
-   });
+    });
 
-  document.addEventListener('trix-file-accept', function(e){
-    e.preventDefault();
-});
+    document.addEventListener('trix-file-accept', function(e){
+      e.preventDefault();
+    });
 
   function previewImage(){
     const image = document.querySelector('#image');

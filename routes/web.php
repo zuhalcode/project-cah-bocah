@@ -95,6 +95,8 @@ Route::resource('/dashboard/categories', DashboardCategoryController::class);
 
 Route::get('/categories', [CategoryController::class,'index']);
 Route::get('categories/{post:slug}',[CategoryController::class,'show']);
+
+Route::resource('/orders', OrderController::class);
 // Route::get('/about', [AboutCotroller::class,'index']);
 
 

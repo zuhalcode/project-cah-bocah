@@ -43,9 +43,9 @@
     
             <div class="row text-light mb-4">
                 <div class="col-12 mb-3">
-                    <div class="w-100 my-3 border-top border-light"></div>
+                    {{-- <div class="w-100 my-3 border-top border-light"></div> --}}
                 </div>
-                <div class="col-auto me-auto">
+                {{-- <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
                             <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/cahbocah.yr/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
@@ -54,7 +54,7 @@
                             <a class="text-light text-decoration-none" target="_blank" href="https://shopee.co.id/cahbocahofficial"><i class="fab fa-shopee fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     

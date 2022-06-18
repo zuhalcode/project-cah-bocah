@@ -1,29 +1,30 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"> Order </h1> 
-</div>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"> Daftar Pesanan </h1> 
+  </div>
 
-@if(session()->has('success'))
-<div class="alert alert-success col-lg-6" role="alert">
-  {{ session('success') }}
-</div>
-@endif
+  @if(session()->has('success'))
+  <div class="alert alert-success col-lg-6" role="alert">
+    {{ session('success') }}
+  </div>
+  @endif
 
-<div class="table-responsive col-lg-6">
-  <a href="/dashboard/categories/create" class="btn btn-dark mb-3">Create New Category</a>
+  <div class="table-responsive col-lg-6">
     <table class="table table-striped table-sm">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Category Name</th>
-          <th scope="col">Action</th>
+          <th scope="col">ID</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Nama Produk</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
         {{-- @foreach ($categories as $category) --}}
-        <tr>
+        {{-- <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $category->name }}</td>
           <td>
@@ -33,10 +34,10 @@
               @csrf
               <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></button>
             </form>
-        </td>
-        </tr>
+          </td>
+        </tr> --}}
         {{-- @endforeach --}}
       </tbody>
     </table>
-</div>
+  </div>
 @endsection

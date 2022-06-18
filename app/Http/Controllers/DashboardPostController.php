@@ -47,19 +47,19 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'slug'  => 'required|unique:posts',
             'category_id' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'required|image|max:2048',
             'body' => 'required'
         ]);
 
         if($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
-        $validatedData['post_id'] = $post->getGuarded();
+
+        $validatedData['user_id'] = auth()->id();
         $validatedData['excerpt'] = Str::limit(strip_tags ($request->body), 25);
-    
         Post::create($validatedData);
 
-        return redirect('/dashboard/posts')->with('succes', 'New product has been added!');
+        return redirect('/dashboard/posts')->with('success', 'New product has been added!');
     }
 
     /**
