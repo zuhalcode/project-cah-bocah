@@ -48,14 +48,15 @@ class DashboardPostController extends Controller
             'slug'  => 'required|unique:posts',
             'category_id' => 'required',
             'image' => 'required|image|max:2048',
-            'body' => 'required'
+            'body' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
         ]);
 
         if($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
 
-        $validatedData['user_id'] = auth()->id();
         $validatedData['excerpt'] = Str::limit(strip_tags ($request->body), 25);
         Post::create($validatedData);
 

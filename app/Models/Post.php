@@ -18,6 +18,10 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function checkout(){
+        return $this->hasMany(Checkout::class, 'post_id', 'id');
+    }
+
     public function getRouteKeyName(){
         return 'slug';
     }

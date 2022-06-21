@@ -5,12 +5,13 @@ use App\Models\Category;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardCategoryController;
-use App\Http\Controllers\OrderController;
 
 ;
 
@@ -78,7 +79,7 @@ Route::get('/dashboard',function(){
         abort(404);
     }
     return view('dashboard.index',[
-        "active"=>'dasboard1'
+        "active"=>'dashboard'
     ]);
 });
 
@@ -90,13 +91,15 @@ Route::resource('/dashboard/orders',OrderController::class)->middleware('auth');
 // Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
 // Route::resource('/dashboard/categories', DashboardCategoryController::class);
 
-Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
+Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class,'checkSlug']);
 Route::resource('/dashboard/categories', DashboardCategoryController::class);
 
 Route::get('/categories', [CategoryController::class,'index']);
 Route::get('categories/{post:slug}',[CategoryController::class,'show']);
 
 Route::resource('/orders', OrderController::class);
+Route::post('/orders/{id}', [OrderController::class, 'order']);
+Route::resource('/checkout', CheckoutController::class);
 // Route::get('/about', [AboutCotroller::class,'index']);
 
 

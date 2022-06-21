@@ -19,19 +19,30 @@
       <div class="flex-fill">
         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
             <li class="nav-item">
-                <a class="nav-link {{ ($active === "home") ? 'active' : '' }}"  href="/">Home</a>
+                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}"  href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ ($active === "product") ? 'active' : '' }}" href="/posts">Product</a>
+                <a class="nav-link {{ Request::is('/products') ? 'active' : '' }}" href="/posts">Product</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ ($active === "categories") ? 'active' : '' }}" href="/categories">Category</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{ ($active === "orders") ? 'active' : '' }}" href="/orders">Order</a>
+                <a class="nav-link {{ Request::is('/categories') ? 'active' : '' }}" href="/categories">Category</a>
               </li>
               <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
               @auth
+              <li class="nav-item">
+                @php
+                
+                  $current_order = \App\Models\Order::where('user_id', auth()->user()->id)->where('status', 0)->first();
+                  if($current_order) $notification = \App\Models\Checkout::where('order_id', $current_order->id)->count();
+                @endphp
+                <a href="/orders" class=" btn nav-link position-relative">
+                  <h5><i class="bi bi-cart-fill text-dark"></i></h5>
+                  <span style="top:8px; left:27px;" class="position-absolute translate-middle badge rounded-pill bg-danger">
+                    {{ $notification ?? 0 }}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#dashboard" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Welcome back, {{ Auth::user()->name }}
@@ -49,7 +60,7 @@
               </li>
             @else
             <li class="nav-item">
-              <a href="/login" class="nav-link {{ ($active === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+              <a href="/login" class="nav-link"><i class="bi bi-box-arrow-in-right"></i> Login</a>
             </li>
             @endauth
           </ul>

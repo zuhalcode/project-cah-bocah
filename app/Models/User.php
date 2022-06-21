@@ -17,12 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'name',
-    //     'username',
-    //     'email',
-    //     'password',
-    // ];
+
 
     protected $guarded = ['id'];
 
@@ -44,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function checkout()
+    {
+        return $this->hasMany(Checkout::class, 'user_id', 'id');
+    }
 };

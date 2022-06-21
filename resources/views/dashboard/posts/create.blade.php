@@ -17,7 +17,7 @@
         @enderror
     <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
-      <input type="text" class="form-control @error('slug') is invalid @enderror" id="slug" name="slug" name="slug" required value="{{ old('slug') }}">
+      <input type="text" class="form-control @error('slug') is invalid @enderror" id="slug" name="slug" name="slug" required value="{{ old('slug') }}" readonly>
       @error('slug')
         <div class="invalid-feedback">
           {{ $message }}
@@ -51,9 +51,19 @@
     </div>
 
       <div class="mb-3">
-        <label for="harga" class="form-label">Harga</label>
-        <input type="text" class="form-control @error('harga') is invalid @enderror" id="harga" name="harga" name="harga" required value="{{ old('harga') }}">
-        @error('harga')
+        <label for="price" class="form-label">Price</label>
+        <input type="text" class="form-control @error('price') is invalid @enderror" id="price" name="price" name="price" value="{{ old('price') }}">
+        @error('price')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+         @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="text" class="form-control @error('stock') is invalid @enderror" id="stock" name="stock" name="stock" value="{{ old('stock') }}">
+        @error('stock')
           <div class="invalid-feedback">
             {{ $message }}
           </div>

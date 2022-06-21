@@ -19,25 +19,14 @@
 
               <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
-                <p class="card-text">
-                  <small class="text-muted">                          
-                    {{ $post->created_at->diffForHumans() }}
-                  </small>
-                  </p>
+                <p class="card-title"><strong>Price : </strong> Rp.{{ $post->price }}</p>
+                <p class="card-title"><strong>Stock : </strong> {{ $post->stock }}</p>
                 <p class="card-text">{{ $post->excerpt }}</p>
-                <h5 class="card-title">{{ $post->harga }}</h5>
-                <a href="/posts/{{ $post->slug }}" class="btn btn-dark">Check Out</a>
+                <a href="/posts/{{ $post->slug }}" class="btn btn-dark"> <i class="bi bi-cart"></i> Order</a>
               </div>
             </div>
       </div>
       @endforeach
   </div>
 </div>
-                                 
-
-   
-   
-</body>
-
-</html>
 @endsection
