@@ -22,10 +22,10 @@
                 <a class="nav-link {{ Request::is('/') ? 'active' : '' }}"  href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('/products') ? 'active' : '' }}" href="/posts">Product</a>
+                <a class="nav-link  {{ Request::is('posts') ? 'active' : '' }}" href="/posts">Product</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('/categories') ? 'active' : '' }}" href="/categories">Category</a>
+                <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Category</a>
               </li>
               <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
               @auth
@@ -48,9 +48,12 @@
                   Welcome back, {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  @if(auth()->user()->username == 'admin')
-                  <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li><li><hr class="dropdown-divider"></li>
-                  @endif
+                  @can('admin')
+                  <li>
+                    <a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  @endcan
                   <li>
                     <form action="/logout" method="post">
                         @csrf

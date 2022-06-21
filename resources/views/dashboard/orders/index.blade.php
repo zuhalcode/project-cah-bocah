@@ -1,43 +1,39 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2"> Daftar Pesanan </h1> 
-  </div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Products </h1> 
+</div>
 
-  @if(session()->has('success'))
-  <div class="alert alert-success col-lg-6" role="alert">
-    {{ session('success') }}
-  </div>
-  @endif
+@if(session()->has('sucess'))
+<div class="alert alert-succes col-lg-8" role="alert">
+  {{ session('success') }}
+</div>
+@endif
 
-  <div class="table-responsive col-lg-6">
-    <table class="table table-striped table-sm">
+<div class="table-responsive col-lg-8">
+  <a href= "/dashboard/posts/create" class="btn btn-dark mb-3">Create New Product</a>
+  <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">ID</th>
-          <th scope="col">Customer</th>
-          <th scope="col">Nama Produk</th>
-          <th scope="col">Status</th>
+          <th scope="col">No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Total Price</th>
+          <th scope="col">Payment Status</th>
         </tr>
       </thead>
       <tbody>
-        {{-- @foreach ($categories as $category) --}}
-        {{-- <tr>
+        @foreach ($orders as $order)
+        <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $category->name }}</td>
-          <td>
-            <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-            <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline">
-              @method('delete')
-              @csrf
-              <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></button>
-            </form>
-          </td>
-        </tr> --}}
-        {{-- @endforeach --}}
+          <td>{{ $order->user->name }}</td>
+          <td>{{ $order->total_price }}</td>
+          <td>{{ $order->status ? 'Paid' : 'Unpaid' }}</td>
+    
+        </tr>
+        @endforeach
       </tbody>
     </table>
-  </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</div>
 @endsection

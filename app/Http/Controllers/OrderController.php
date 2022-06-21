@@ -76,12 +76,22 @@ class OrderController extends Controller
             $checkout->price += $post->price * $request->quantity;
             $checkout->update();
         }
-
-        $newOrder->total_price += $post->price * $request->quantity;
-        $newOrder->update();
+        
+        $validateOrder['total_price'] += $post->price * $request->quantity;
+        $validateOrder->update();
         
         Alert::success('Success', 'Product added successfully');
         return redirect('/posts/'.$post->title);
+    }
+
+    public function confirm()
+    {
+        $order = Order::where('user_id', auth()->user()->id)->where('status', 0)->first();
+        $order->status = 1;
+        $order->update();
+
+        Alert::success('Success', 'Order confirmed successfully');
+        return redirect('/');
     }
 
     /**

@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardCategoryController;
 
 ;
@@ -28,26 +29,13 @@ use App\Http\Controllers\DashboardCategoryController;
 
 
 Route::get('/', function () {
-    // return view('welcome');
     return view('home',[
-        "title" => "Home",
-        'active'=> 'home',        
+        "title" => "Home",        
     ]);
-    // return 'Halaman Home';
 });
-
-// Route::get('/about', function () {
-//     // return 'Halaman About';
-//     return view('about',[
-//         "title" => "About",
-//         'active'=> 'about',
-//         "nama" => "Cah Bocah",
-//     ]);
-// });
 
 Route::get('/posts', [PostController::class,'index']);
 Route::get('posts/{post:slug}',[PostController::class,'show']);
-// Route::get('/about', [AboutCotroller::class,'index']);
 
 Route::get('/categories',function(){
     return view('categories',[
@@ -85,7 +73,7 @@ Route::get('/dashboard',function(){
 
 Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-Route::resource('/dashboard/orders',OrderController::class)->middleware('auth');
+Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
 
 
 // Route::get('/dashboard/posts/checkSlug',[DashboardCategoryController::class,'checkSlug']);
@@ -99,7 +87,9 @@ Route::get('categories/{post:slug}',[CategoryController::class,'show']);
 
 Route::resource('/orders', OrderController::class);
 Route::post('/orders/{id}', [OrderController::class, 'order']);
+Route::controller(OrderController::class)->group(fn() =>[
+    Route::get('confirm', 'confirm'),
+]);
 Route::resource('/checkout', CheckoutController::class);
-// Route::get('/about', [AboutCotroller::class,'index']);
 
 

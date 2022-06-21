@@ -37,9 +37,16 @@
               </tr>              
               @endforeach
               <tr>
-                <td colspan="4"></td>
-                <td>Rp. {{ number_format($orders->price) }}</td>
+                <td colspan="4" align="right">Total harga : </td>
+                <td>Rp. {{ number_format($orders->total_price) }}</td>
+                <td>
+                  <a href="/confirm" class="btn btn-success">
+                    <i class="bi bi-cart-fill"></i>
+                    Checkout
+                  </a>
+                </td>
               </tr>
+              
               @endif
             </tbody>
           </table>
