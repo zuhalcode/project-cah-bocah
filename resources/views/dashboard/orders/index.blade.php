@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Products </h1> 
+    <h1 class="h2">Orders </h1> 
 </div>
 
 @if(session()->has('sucess'))
@@ -10,9 +10,7 @@
   {{ session('success') }}
 </div>
 @endif
-
 <div class="table-responsive col-lg-8">
-  <a href= "/dashboard/posts/create" class="btn btn-dark mb-3">Create New Product</a>
   <table class="table table-striped table-sm">
       <thead>
         <tr>
@@ -20,6 +18,7 @@
           <th scope="col">Name</th>
           <th scope="col">Total Price</th>
           <th scope="col">Payment Status</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +28,11 @@
           <td>{{ $order->user->name }}</td>
           <td>{{ $order->total_price }}</td>
           <td>{{ $order->status ? 'Paid' : 'Unpaid' }}</td>
+          <td>{{ $order->status ? 'Complete' : 'Canceled' }}</td>
     
         </tr>
         @endforeach
       </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">Update</button>
 </div>
 @endsection

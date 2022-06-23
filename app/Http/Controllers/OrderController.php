@@ -39,7 +39,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.orders.create',[
+            "title" => "Create Order",
+        ]);
     }
 
     public function order(Request $request, $id)

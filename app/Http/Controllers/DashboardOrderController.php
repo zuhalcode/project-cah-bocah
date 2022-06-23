@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Order;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class DashboardOrderController extends Controller
@@ -18,7 +20,6 @@ class DashboardOrderController extends Controller
             'title'=> 'Order',
             'active'=> 'orders',
             'orders'=> Order::all(),
-            'status' => 'Processing'
         ]);
     }
 
@@ -29,7 +30,11 @@ class DashboardOrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.orders.create',[
+            'title'=> 'Order',
+            'products'=> Post::all(),
+            'categories'=> Category::all(),
+        ]);
     }
 
     /**
