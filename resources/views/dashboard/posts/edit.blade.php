@@ -10,6 +10,7 @@
       enctype="multipart/form-data">
       @method('put')
       @csrf
+
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control @error('title') is invalid @enderror" id="title" 
@@ -20,10 +21,11 @@
           </div>
         @enderror
       </div>
+
     <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
       <input type="text" class="form-control @error('slug') is invalid @enderror" id="slug" 
-      name="slug" name="slug" required value="{{ old('slug', $post->slug) }}">
+      name="slug" name="slug" required value="{{ old('slug', $post->slug) }}" readonly>
       @error('slug')
         <div class="invalid-feedback">
           {{ $message }}
@@ -36,28 +38,26 @@
         class="form-label">Category</label>
         <select class="form-select" name="category_id">
             @foreach ($categories as $category)
-            @if(old('category_id', $post->category_id)== $category->id)
-              <option value="{{ $category->id }}"selected>{{ $category->name }}</option>
-            @else
-              <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endif
-      @endforeach
-      </select>
-      </div>
+              @if(old('category_id', $post->category_id)== $category->id)
+                <option value="{{ $category->id }}"selected>{{ $category->name }}</option>
+              @else
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endif
+            @endforeach
+        </select>
+    </div>
 
       <div class="mb-3">
         <label for="image" class="form-label mb-3">Upload Image</label>
         <br>
         <input type="hidden" name="oldImage" value="{{ $post->image }}">
         @if($post->image)
-        <img src="{{ asset('storage/post-images/'.$post->image) }}" class="img-preview img-fluid mb-3"
-        d-block>
+          <img src="{{ asset('storage/'.$post->image) }}" class="img-preview w-25 h-25 img-fluid mb-3"/>
         @else
-          <img class="img-preview img-fluid mb-3">
+          <img class="img-preview img-fluid mb-3 w-25 h-25"/>
         @endif
-        <img class="img-preview img-fluid">
         <input class="form-control @error('image') is invalid @enderror" type="file" id="image" 
-        name="image" onchange="previewImage">
+        name="image" onchange="previewImage()">
         @error('image')
         <div class="invalid-feedback">
           {{ $message }}
@@ -66,9 +66,19 @@
       </div>
 
       <div class="mb-3">
-        <label for="harga" class="form-label">Harga</label>
-        <input type="text" class="form-control @error('harga') is invalid @enderror" id="harga" name="harga" name="harga" required value="{{ old('harga') }}">
-        @error('harga')
+        <label for="price" class="form-label">Price</label>
+        <input type="text" class="form-control @error('price') is invalid @enderror" id="price" name="price" name="price" value="{{ old('price', $post->price) }}">
+        @error('price')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+         @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="text" class="form-control @error('stock') is invalid @enderror" id="stock" name="stock" name="stock" value="{{ old('stock', $post->stock) }}">
+        @error('stock')
           <div class="invalid-feedback">
             {{ $message }}
           </div>
