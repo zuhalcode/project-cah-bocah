@@ -12,7 +12,7 @@
 @endif
 
 <div class="table-responsive col-lg-8">
-  <a href= "/dashboard/orders/create" class="btn btn-dark mb-3">Create New Order</a>
+  <a href= "/dashboard/posts/create" class="btn btn-dark mb-3">Create New Product</a>
   <table class="table table-striped table-sm">
       <thead>
         <tr>

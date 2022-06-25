@@ -63,13 +63,10 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard',function(){
-    if(auth()->user()->username !='admin'){
-        abort(404);
-    }
     return view('dashboard.index',[
         "active"=>'dashboard'
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/posts/checkSlug',[DashboardPostController::class,'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

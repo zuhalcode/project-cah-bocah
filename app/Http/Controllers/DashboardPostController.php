@@ -104,9 +104,12 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'title' => 'required|max:255',
             'harga' => 'required',
             'image' => 'image|file|max:1024',
-            'body' => 'required'
+            'body' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
         ];
 
         if($request->slug != $post->slug) {
@@ -127,7 +130,7 @@ class DashboardPostController extends Controller
         Post::where('id', $post->id)
             ->update($validatedData);
 
-        return redirect('/dashboard/posts')->with('succes', 'Post has been updated!');
+        return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
     }
 
     /**
