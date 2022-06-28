@@ -27,9 +27,9 @@
               <li class="nav-item">
                 <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Category</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('history') ? 'active' : '' }}" href="/history">History</a>
-              </li>
+              </li> --}}
               <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
               @auth
               <li class="nav-item">
