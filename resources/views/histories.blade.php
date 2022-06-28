@@ -28,11 +28,11 @@
                     <td>{{ $history->price }}</td>
                     <td>{{ $history->price * $history->quantity }}</td>
                     <td>
-                    <form action="/history/{{ $history->id }}" method="POST">
-                        @csrf  
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
-                    </form>
+                      <form action="/history/{{ $history->id }}" method="POST">
+                          @csrf  
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                      </form>
                     </td>
                 </tr>              
                 @endforeach

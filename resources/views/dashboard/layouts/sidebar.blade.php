@@ -8,6 +8,7 @@
           </a>
         </li>
         
+        @can('admin')
         <li class="nav-item">
           <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active':''}}" href="/dashboard/posts">
             <span data-feather="shopping-cart"></span>
@@ -21,6 +22,7 @@
             Categories
           </a>
         </li>
+        @endcan
 
         
         <li class="nav-item">

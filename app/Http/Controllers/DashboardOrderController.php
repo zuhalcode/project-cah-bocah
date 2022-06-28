@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Order;
 use App\Models\Post;
+use App\Models\Order;
+use App\Models\History;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class DashboardOrderController extends Controller
@@ -20,6 +21,9 @@ class DashboardOrderController extends Controller
             'title'=> 'Order',
             'active'=> 'orders',
             'orders'=> Order::all(),
+            'histories' => History::join('posts', 'histories.post_id', '=', 'posts.id')
+                                    ->select('histories.id', 'posts.title', 'histories.quantity', 'histories.price')
+                                    ->where('user_id', auth()->user()->id)->get()
         ]);
     }
 
