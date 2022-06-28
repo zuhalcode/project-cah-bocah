@@ -1,12 +1,14 @@
 <?php
 
 
-use App\Models\Category;
+use App\Models\History;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
@@ -88,5 +90,7 @@ Route::controller(OrderController::class)->group(fn() =>[
     Route::get('confirm', 'confirm'),
 ]);
 Route::resource('/checkout', CheckoutController::class);
+
+Route::resource('/history', HistoryController::class)->middleware('auth');
 
 

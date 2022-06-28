@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkout;
+use App\Models\History;
 use App\Models\Order;
 use App\Models\Post;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -83,12 +84,21 @@ class OrderController extends Controller
         $validateOrder->update();
         
         Alert::success('Success', 'Product added successfully');
-        return redirect('/posts/'.$post->title);
+        return redirect('/posts/'.$post->slug);
     }
 
     public function confirm()
     {
         $order = Order::where('user_id', auth()->user()->id)->where('status', 0)->first();
+        $checkouts = Checkout::where('order_id', $order->id)->get();
+        foreach($checkouts as $checkout) {
+            $history = new History;
+            $history->user_id = auth()->user()->id;
+            $history->post_id = $checkout->post_id;
+            $history->quantity = $checkout->quantity;
+            $history->price = $checkout->price;
+            $history->save();
+        }
         $order->status = 1;
         $order->update();
 

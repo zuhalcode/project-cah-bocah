@@ -19,4 +19,9 @@ class Order extends Model
     {
         return $this->hasMany(Checkout::class, 'order_id', 'id');
     }
+
+    // public function history()
+    // {
+    //     return $this->belongsTo(History::class, 'order_id', 'id');
+    // }
 }

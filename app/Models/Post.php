@@ -22,6 +22,10 @@ class Post extends Model
         return $this->hasMany(Checkout::class, 'post_id', 'id');
     }
 
+    public function history() {
+        return $this->belongsTo(History::class);
+    } 
+
     public function getRouteKeyName(){
         return 'slug';
     }
